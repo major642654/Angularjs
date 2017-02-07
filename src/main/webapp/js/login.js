@@ -9,7 +9,7 @@ var app = angular.module('myApp', []);
                 data:{username:$scope.username,password:$scope.password}
                 //dataType:'json'
             }).success(function(data){
-                if(data == "12345")
+                if(data == "12345bbb")
                 {
                 	 alert("登录成功");
                 }

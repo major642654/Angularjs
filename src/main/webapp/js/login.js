@@ -11,7 +11,7 @@ var app = angular.module('myApp', []);
             }).success(function(data){
                 if(data == "123aaaa")
                 {
-                	 alert("登录成功");
+                	 alert("登录成功bbb");
                 }
                 
             }).error(function(){

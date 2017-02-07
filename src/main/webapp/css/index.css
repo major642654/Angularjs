@@ -1,0 +1,19 @@
+body{  
+  
+    background-color:#ebf5ff;   /* 页面背景色 */  
+    margin:0px; padding:4px;  
+    text-align:center;          /* 居中对齐（IE有效） */  
+}  
+.datalist{  
+    color:#0046a6;              /* 表格文字颜色 */  
+    background-color:#d2e8ff;   /* 表格背景色 */  
+    font-family:Arial;          /* 表格字体 */  
+}  
+.datalist caption{  
+    font-size:18px;             /* 标题文字大小 */  
+    font-weight:bold;           /* 标题文字粗体 */  
+}  
+.datalist th{  
+    color:#003e7e;              /* 行、列名称颜色 */  
+    background-color:#7bb3ff;   /* 行、列名称的背景色 */  
+}

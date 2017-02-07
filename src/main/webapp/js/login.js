@@ -9,9 +9,9 @@ var app = angular.module('myApp', []);
                 data:{username:$scope.username,password:$scope.password}
                 //dataType:'json'
             }).success(function(data){
-                if(data == "12345bbb")
+                if(data == "12345")
                 {
-                	 alert("登录成功");
+                	 alert("登录成功bbb");
                 }
                 
             }).error(function(){

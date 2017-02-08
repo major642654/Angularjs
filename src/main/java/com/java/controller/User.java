@@ -1,6 +1,6 @@
 package com.java.controller;
 
-public class Person
+public class User
 {
 	private String username;
 	private String password;

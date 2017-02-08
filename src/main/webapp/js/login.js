@@ -1,55 +1,27 @@
 var app = angular.module('myApp', []);
-    app.controller('loginCtr', function($scope,$http) {
+    app.controller('loginCtr', function($scope,$http,$location) {
         $scope.login=function()     
         {
             $http({
                 url:'LoginController',
                 method:'POST',
-               
                 data:{username:$scope.username,password:$scope.password}
-                //dataType:'json'
             }).success(function(data){
-                if(data == "123")
-                {
-                	 alert("登录成功");
-                }
-                
+            	if(data ==="200")
+            	{
+            		window.location.href = '/Angularjs/index.html';
+                	console.log("success");
+            	}
+            	else
+            	{
+            		
+            		console.log("failed");
+            		window.location.href = '/Angularjs/test1.html';
+            	}
+            	//$location.path("/index" );
             }).error(function(){
+            
                 console.log("error");
             })
         }
-
-
-        /*   {
-    	var formData = {
-    			"name":$scope.username,
-    			"password":$scope.password
-    	};
-    	var response = $http.post('/LoginController',formData);
-    	response.success(function(data){
-    		console.log(data);
-    	});
-    	response.error(function(){
-    		console.log("error");
-    	});
-    }
-    */
-        
-        
-  /*     $scope.reset = function(){
-                  //alert($username);
-        $scope.resetInfo = function()
-        {
-            $scope.username="";
-            $scope.password="";
-        }
-        $scope.submit = function()
-        {
-            var postData = "?username="+$scope.username+"$"+"password="+$scope.password;
-            var url = "LoginServlet"+postData;
-            $http.post(url).success(function(postData){
-                alert(postData);
-            })
-        }
-   }*/
 });

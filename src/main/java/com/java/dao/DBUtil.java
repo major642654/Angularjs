@@ -11,8 +11,6 @@ public class DBUtil
 	public static Connection getConnection()
 	{
 		Connection connection =null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;	
 		try
 		{
 			String driverClass = "com.mysql.jdbc.Driver";
@@ -23,37 +21,7 @@ public class DBUtil
 			connection = DriverManager.getConnection(url,username,password);
 		} catch (Exception e)
 		{
-		}finally{			
-			try
-			{
-				if(preparedStatement !=null)
-				{
-					preparedStatement.close();
-				}
-			} catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-			try
-			{
-				if(connection !=null)
-				{
-					connection.close();
-				}
-			} catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-			try
-			{
-				if(resultSet !=null)
-				{
-					resultSet.close();
-				}
-			} catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		}
 		return connection;
 		

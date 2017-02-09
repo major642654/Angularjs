@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class UserDao
 {
@@ -43,5 +46,48 @@ public class UserDao
 			e.printStackTrace();
 		}
 		return false;
+	}
+	public void regist(String user,String passwd)
+	{
+		String sql= "insert into user (username,password) values (?,?)";
+		try
+		{
+			connection = dbUtil.getConnection();
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, user);
+			preparedStatement.setString(2, passwd);
+			preparedStatement.executeUpdate();
+			System.out.println("≤Â»Î≥…π¶");
+		} catch (Exception e)
+		{
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	public List<Product> getAll()
+	{
+		List<Product> products = new ArrayList<Product>();
+		String sql = "Select id,name,img,price from product";
+		try
+		{
+			connection = dbUtil.getConnection();
+			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next())
+			{	
+				int ID = resultSet.getInt(1);
+				String name = resultSet.getString(2);
+				String img = resultSet.getString(3);
+				String price = resultSet.getString(4);		
+				//System.out.println(ID+name+price);
+				Product product = new Product(ID, name,img, price);
+				products.add(product);
+			}
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return products;
+		
 	}
 }

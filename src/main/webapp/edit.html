@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="js/angular.min.js" ></script>
+<script>
+var app = angular.module('myApp', []);
+app.controller('editCtr', function($scope,$http,$location) {
+     var id = $location.search()['id'];
+     var name = $location.search()['name'];
+     var price = $location.search()['price'];
+     $scope.product = {
+    	 "ID":id,
+     	 "name":name,
+     	 "price":price
+     };
+     $scope.edit = function()
+     {
+    	 if(confirm("产品名称:"+$scope.product.name+"\n产品价格:"+$scope.product.price+"\n确认修改？"))
+    	 {
+    		 $http({
+    			 url:'UpdateController',
+    			 method:'POST',
+    			 params:{id:id,name:$scope.product.name,price:$scope.product.price}
+    		 }).success(function(){
+    			 //$scope.product = response;
+    			 window.location.href = '/Angularjs/index.html'
+    		 }) 
+    	 }
+    	 
+     }
+});
+</script>
+<title>Insert title here</title>
+</head>
+<body ng-app="myApp" >
+	<form ng-controller="editCtr">
+		<table>
+			<tr>
+				<td>产品编号:</td>
+				<td><input  readonly="true" ng-model="product.ID"></td>
+			</tr>	
+			<tr>
+				<td>产品名称:</td>
+				<td><input  ng-model="product.name"></td>
+			</tr>
+			<tr>
+				<td>产品价格:</td>
+				<td><input  ng-model="product.price"></td>
+			</tr>
+			<tr><td><button ng-click="edit()">修改信息</button></td></tr>	
+		</table>
+	</form>
+</body>
+</html>

@@ -30,8 +30,10 @@
         <td> {{product.name}} </td>
         <td><img style="width:150px;height:100px" ng-src="{{product.img}}"></td>
         <td> {{product.price | currency : "(RMB)"}} </td>
-        <td><input type="button" value="编辑" ></td>
-        <td><input type="button" value="删除" ></td>
+        <td><button ng-click="edit(product.iD,product.name,product.price)">编辑</button></td>
+        <td>
+        <button ng-click="deleteConfirm(product.iD)">删除</button>
+        </td>
       </tr>
     </tbody>
   </table>

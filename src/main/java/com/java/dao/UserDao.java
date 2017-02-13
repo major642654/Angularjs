@@ -10,17 +10,16 @@ import java.util.List;
 
 public class UserDao
 {
-	Connection connection=null;
+	DBUtil dbUtil = new DBUtil();
+	Connection connection=dbUtil.getConnection();
     PreparedStatement preparedStatement=null;
     ResultSet resultSet=null;
-	DBUtil dbUtil = new DBUtil();
 	public boolean login(String user,String pwd)
 	{
 		String sql  = "Select count(id) from user where username = ? " + 
 				"AND password = ?";
 		try
 		{
-			connection = dbUtil.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, user);
 			preparedStatement.setString(2, pwd);
@@ -52,7 +51,6 @@ public class UserDao
 		String sql= "insert into user (username,password) values (?,?)";
 		try
 		{
-			connection = dbUtil.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, user);
 			preparedStatement.setString(2, passwd);
@@ -70,7 +68,6 @@ public class UserDao
 		String sql = "Select id,name,img,price from product";
 		try
 		{
-			connection = dbUtil.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next())
@@ -89,5 +86,34 @@ public class UserDao
 		}
 		return products;
 		
+	}
+	public void deleteByID(Integer ID)
+	{
+		//System.out.println(ID);
+		String sql = "Delete from product where id = ?";
+		try
+		{
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, ID);
+			preparedStatement.executeUpdate();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	public void updateByID(Integer ID,String name,String price)
+	{
+		String sql="Update product set name=?,price=? WHERE id=?";
+		try
+		{
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, name);
+			preparedStatement.setString(2, price);
+			preparedStatement.setInt(3, ID);
+			preparedStatement.executeUpdate();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 }
